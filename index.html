@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daniel Testimony | Professional Video Editor</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Google Fonts: Cormorant Garamond & DM Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Styling -->
+    <style>
+        /* Base Variables & Theme Setup */
+        :root {
+            --color-black: #0a0a0a;
+            --color-dark-gray: #111111;
+            --color-gold: #c9a84c;
+            --color-gold-hover: #dfbc58;
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body: 'DM Sans', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-black);
+            color: #ffffff;
+            overflow-x: hidden;
+            cursor: none; /* Replaced by custom cursor on desktop */
+        }
+
+        h1, h2, h3, h4, h5, h6, .font-heading {
+            font-family: var(--font-heading);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--color-black);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #222222;
+            border-radius: 5px;
+            border: 2px solid var(--color-black);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--color-gold);
+        }
+
+        /* Cinematic Grain Overlay */
+        .grain-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.04;
+            background: url('https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?q=80&w=1000&auto=format&fit=crop') repeat;
+        }
+
+        /* Custom Gold Cursor */
+        #cursor-dot {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background-color: var(--color-gold);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease;
+        }
+        #cursor-outline {
+            position: fixed;
+            width: 36px;
+            height: 36px;
+            border: 1px solid rgba(201, 168, 76, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+        }
+        @media (max-width: 1024px) {
+            body { cursor: auto; }
+            #cursor-dot, #cursor-outline { display: none; }
+        }
+
+        /* Glassmorphism Navbar */
+        .navbar-glass {
+            background: rgba(10, 10, 10, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+        }
+
+        /* Gold Glow Effects */
+        .gold-glow {
+            box-shadow: 0 0 25px rgba(201, 168, 76, 0.25);
+        }
+        .gold-glow-hover:hover {
+            box-shadow: 0 0 30px rgba(201, 168, 76, 0.4);
+        }
+
+        /* Scroll Reveal Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero Text Animation */
+        .animate-fade-in {
+            animation: fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Bouncing Animation */
+        @keyframes bounce-subtle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(8px); }
+        }
+        .animate-bounce-subtle {
+            animation: bounce-subtle 2s infinite ease-in-out;
+        }
+
+        /* Tool Badge Hover */
+        .tool-badge {
+            transition: all 0.3s ease;
+        }
+        .tool-badge:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-gold);
+            background: rgba(201, 168, 76, 0.1);
+        }
+    </style>
+</head>
+<body class="relative bg-[#0a0a0a] text-gray-200">
+
+    <!-- Cinematic Grain Overlay -->
+    <div class="grain-overlay"></div>
+
+    <!-- Custom Cursor -->
+    <div id="cursor-dot"></div>
+    <div id="cursor-outline"></div>
+
+    <!-- FIXED TOP NAVBAR -->
+    <header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 navbar-glass py-5 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#home" class="flex items-center gap-2 group cursor-pointer">
+                <span class="text-2xl md:text-3xl font-heading font-bold text-[#c9a84c] tracking-wider group-hover:text-white transition-colors duration-300">
+                    DANIEL TESTIMONY
+                </span>
+                <span class="text-xs tracking-widest uppercase px-2 py-0.5 rounded border border-[#c9a84c]/40 text-[#c9a84c] hidden sm:inline-block">
+                    EDITOR
+                </span>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-8 text-sm uppercase tracking-widest font-medium">
+                <a href="#home" class="nav-link text-[#c9a84c] hover:text-[#c9a84c] transition-colors duration-300 relative py-1">Home</a>
+                <a href="#portfolio" class="nav-link text-gray-300 hover:text-[#c9a84c] transition-colors duration-300 relative py-1">Portfolio</a>
+                <a href="#about" class="nav-link text-gray-300 hover:text-[#c9a84c] transition-colors duration-300 relative py-1">About</a>
+                <a href="#services" class="nav-link text-gray-300 hover:text-[#c9a84c] transition-colors duration-300 relative py-1">Services</a>
+                <a href="#testimonials" class="nav-link text-gray-300 hover:text-[#c9a84c] transition-colors duration-300 relative py-1">Testimonials</a>
+                <a href="#contact" class="nav-link text-gray-300 hover:text-[#c9a84c] transition-colors duration-300 relative py-1">Contact</a>
+            </nav>
+
+            <!-- Desktop CTA -->
+            <div class="hidden lg:block">
+                <a href="#contact" class="px-5 py-2.5 rounded-none border border-[#c9a84c] text-[#c9a84c] text-xs uppercase tracking-widest font-semibold hover:bg-[#c9a84c] hover:text-[#0a0a0a] transition-all duration-300 gold-glow-hover">
+                    Let's Talk
+                </a>
+            </div>
+
+            <!-- Mobile Hamburger Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-gray-200 hover:text-[#c9a84c] focus:outline-none transition-colors text-2xl z-50" aria-label="Toggle Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobile-menu" class="fixed inset-0 bg-[#0a0a0a]/98 backdrop-blur-2xl flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-all duration-500 z-40 md:hidden">
+            <nav class="flex flex-col items-center gap-6 text-xl uppercase tracking-widest font-heading font-semibold">
+                <a href="#home" class="mobile-nav-link text-[#c9a84c] hover:text-[#c9a84c] transition-colors">Home</a>
+                <a href="#portfolio" class="mobile-nav-link text-gray-300 hover:text-[#c9a84c] transition-colors">Portfolio</a>
+                <a href="#about" class="mobile-nav-link text-gray-300 hover:text-[#c9a84c] transition-colors">About</a>
+                <a href="#services" class="mobile-nav-link text-gray-300 hover:text-[#c9a84c] transition-colors">Services</a>
+                <a href="#testimonials" class="mobile-nav-link text-gray-300 hover:text-[#c9a84c] transition-colors">Testimonials</a>
+                <a href="#contact" class="mobile-nav-link text-gray-300 hover:text-[#c9a84c] transition-colors">Contact</a>
+            </nav>
+            <div class="pt-6 border-t border-gray-800 w-2/3 text-center">
+                <a href="#contact" class="inline-block w-full py-3 bg-[#c9a84c] text-[#0a0a0a] font-semibold text-sm uppercase tracking-widest rounded-none shadow-lg shadow-[#c9a84c]/20">
+                    Hire Me
+                </a>
+            </div>
+            <!-- Social Icons Mobile -->
+            <div class="flex gap-6 mt-4 text-xl text-gray-400">
+                <a href="https://youtube.com" target="_blank" class="hover:text-[#c9a84c] transition-colors"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://instagram.com" target="_blank" class="hover:text-[#c9a84c] transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://tiktok.com" target="_blank" class="hover:text-[#c9a84c] transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://linkedin.com" target="_blank" class="hover:text-[#c9a84c] transition-colors"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- PAGE 1 — HOME / HERO -->
+    <section id="home" class="relative min-h-screen flex flex-col justify-center items-center pt-24 pb-16 px-6 overflow-hidden">
+        <!-- Background Video / Cinematic Image Overlay -->
+        <div class="absolute inset-0 z-0">
+            <!-- High quality cinematic dark background image -->
+            <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=2070&auto=format&fit=crop" alt="Cinematic Video Editing Studio Background" class="w-full h-full object-cover opacity-30 scale-105 animate-[pulse_10s_infinite_ease-in-out]">
+            <!-- Dark Gradient Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/80 via-[#0a0a0a]/95 to-[#0a0a0a]"></div>
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(201,168,76,0.08)_0%,transparent_70%)]"></div>
+        </div>
+
+        <div class="relative z-10 max-w-5xl mx-auto text-center mt-12 md:mt-20">
+            <!-- Animated Subtitle Badge -->
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 mb-8 rounded-full bg-[#111111] border border-[#c9a84c]/30 text-[#c9a84c] text-xs md:text-sm tracking-widest uppercase animate-fade-in opacity-0" style="animation-delay: 0.2s;">
+                <span class="w-2 h-2 rounded-full bg-[#c9a84c] animate-pulse"></span>
+                Professional Video Editor
+            </div>
+
+            <!-- Large Cinematic Heading -->
+            <h1 class="text-5xl sm:text-6xl md:text-8xl font-bold font-heading tracking-tight leading-none mb-6 animate-fade-in opacity-0" style="animation-delay: 0.4s;">
+                Crafting Stories.<br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#c9a84c] to-white">Frame by Frame.</span>
+            </h1>
+
+            <!-- Name Below -->
+            <p class="text-xl md:text-2xl font-light text-gray-300 font-heading italic mb-6 animate-fade-in opacity-0" style="animation-delay: 0.6s;">
+                By Daniel Testimony
+            </p>
+
+            <!-- Subtitle -->
+            <p class="max-w-2xl mx-auto text-base md:text-lg text-gray-400 font-normal leading-relaxed mb-10 animate-fade-in opacity-0" style="animation-delay: 0.8s;">
+                Specializing in high-impact Short-form Content & cinematic Brand/Commercial Videos that captivate audiences, elevate brands, and drive real retention.
+            </p>
+
+            <!-- Two CTA Buttons -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-5 animate-fade-in opacity-0" style="animation-delay: 1.0s;">
+                <a href="#portfolio" class="w-full sm:w-auto px-8 py-4 bg-[#c9a84c] text-[#0a0a0a] font-bold text-sm uppercase tracking-widest shadow-xl hover:bg-[#dfbc58] transition-all duration-300 transform hover:-translate-y-1 gold-glow">
+                    View My Work
+                </a>
+                <a href="#contact" class="w-full sm:w-auto px-8 py-4 border-2 border-[#c9a84c] text-[#c9a84c] font-bold text-sm uppercase tracking-widest hover:bg-[#c9a84c]/10 transition-all duration-300 transform hover:-translate-y-1">
+                    Hire Me
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll Down Indicator -->
+        <div class="absolute bottom-24 md:bottom-28 left-1/2 transform -translate-x-1/2 z-10 flex flex-col items-center gap-2 animate-bounce-subtle cursor-pointer" onclick="document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})">
+            <span class="text-xs uppercase tracking-widest text-gray-500 font-medium">Scroll to Explore</span>
+            <i class="fa-solid fa-chevron-down text-[#c9a84c] text-sm"></i>
+        </div>
+
+        <!-- Stats Bar Below Hero -->
+        <div class="absolute bottom-0 left-0 w-full bg-[#111111]/90 border-t border-b border-[#c9a84c]/20 py-4 px-6 z-10 backdrop-blur-md">
+            <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-around items-center gap-6 md:gap-0 text-center divide-y md:divide-y-0 md:divide-x divide-gray-800">
+                <div class="w-full md:w-1/3 py-2 md:py-0">
+                    <span class="block text-2xl md:text-3xl font-heading font-bold text-[#c9a84c]">50+</span>
+                    <span class="text-xs uppercase tracking-widest text-gray-400 mt-1 block">Projects Delivered</span>
+                </div>
+                <div class="w-full md:w-1/3 py-2 md:py-0">
+                    <span class="block text-2xl md:text-3xl font-heading font-bold text-[#c9a84c]">3+ Years</span>
+                    <span class="text-xs uppercase tracking-widest text-gray-400 mt-1 block">Experience</span>
+                </div>
+                <div class="w-full md:w-1/3 py-2 md:py-0">
+                    <span class="block text-2xl md:text-3xl font-heading font-bold text-[#c9a84c]">100%</span>
+                    <span class="text-xs uppercase tracking-widest text-gray-400 mt-1 block">Client Satisfaction</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- PAGE 2 — PORTFOLIO / WORK -->
+    <section id="portfolio" class="py-28 px-6 md:px-12 max-w-7xl mx-auto reveal">
+        <div class="text-center mb-16">
+            <span class="text-xs uppercase tracking-widest text-[#c9a84c] font-semibold block mb-3">// PORTFOLIO</span>
+            <h2 class="text-4xl md:text-6xl font-heading font-bold tracking-tight">My Work</h2>
+            <div class="w-20 h-1 bg-[#c9a84c] mx-auto mt-4 mb-8"></div>
+            <p class="text-gray-400 max-w-2xl mx-auto text-base">
+                Explore a curated selection of recent edits, ranging from high-retention short-form vertical videos to immersive, cinematic brand commercials.
+            </p>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="flex flex-wrap justify-center items-center gap-3 md:gap-6 mb-16">
+            <button class="filter-btn active px-6 py-2.5 rounded-full text-xs uppercase tracking-widest font-semibold transition-all duration-300 bg-[#c9a84c] text-[#0a0a0a] shadow-lg shadow-[#c9a84c]/20" data-filter="all">
+                All Projects
+            </button>
+            <button class="filter-btn px-6 py-2.5 rounded-full text-xs uppercase tracking-widest font-semibold transition-all duration-300 bg-[#111111] text-gray-300 hover:text-white border border-gray-800 hover:border-[#c9a84c]/50" data-filter="short-form">
+                Short-form Content
+            </button>
+            <button class="filter-btn px-6 py-2.5 rounded-full text-xs uppercase tracking-widest font-semibold transition-all duration-300 bg-[#111111] text-gray-300 hover:text-white border border-gray-800 hover:border-[#c9a84c]/50" data-filter="brand">
+                Brand & Commercial
+            </button>
+        </div>
+
+        <!-- Project Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolio-grid">
+            
+            <!-- Project 1: Brand/Commercial -->
+            <div class="portfolio-card group relative bg-[#111111] border border-gray-800 rounded-lg overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:border-[#c9a84c] gold-glow-hover cursor-pointer" data-category="brand" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
+                <div class="relative aspect-video overflow-hidden bg-black">
+                    <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=1000&auto=format&fit=crop" alt="Hyper-car Commercial Edit" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                    <!-- Gold Play Button Overlay -->
+                    <div class="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/20 transition-colors duration-300">
+                        <div class="w-16 h-16 rounded-full bg-[#c9a84c] text-[#0a0a0a] flex items-center justify-center text-2xl shadow-xl transform group-hover:scale-110 transition-transform duration-300">
+                            <i class="fa-solid fa-play ml-1"></i>
+                        </div>
+                    </div>
+                    <!-- Hover Watch Now Overlay -->
+                    <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/80 to-transparent p-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-300 flex justify-between items-end">
+                        <div>
+                            <span class="text-xs uppercase tracking-widest text-[#c9a84c] font-semibold">Brand & Commercial</span>
+                            <h3 class="text-xl font-heading font-bold text-white mt-1">Apex Automotive Anthem</h3>
+                        </div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-[#c9a84c] flex items-center gap-1 group-hover:underline">
+                            Watch Now <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2: Short-form -->
+            <div class="portfolio-card group relative bg-[#111111] border border-gray-800 rounded-lg overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:border-[#c9a84c] gold-glow-hover cursor-pointer" data-category="short-form" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
+                <div class="relative aspect-video overflow-hidden bg-black">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop" alt="Viral Aesthetic Reel" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                    <!-- Gold Play Button Overlay -->
+                    <div class="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/20 transition-colors duration-300">
+                        <div class="w-16 h-16 rounded-full bg-[#c9a84c] text-[#0a0a0a] flex items-center justify-center text-2xl shadow-xl transform group-hover:scale-110 transition-transform duration-300">
+                            <i class="fa-solid fa-play ml-1"></i>
+                        </div>
+                    </div>
+                    <!-- Hover Watch Now Overlay -->
+                    <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/80 to-transparent p-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-300 flex justify-between items-end">
+                        <div>
+                            <span class="text-xs uppercase tracking-widest text-[#c9a84c] font-semibold">Short-form Content</span>
+                            <h3 class="text-xl font-heading font-bold text-white mt-1">Dynamic Fashion Reel</h3>
+                        </div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-[#c9a84c] flex items-center gap-1 group-hover:underline">
+                            Watch Now <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3: Brand/Commercial -->
+            <div class="portfolio-card group relative bg-[#111111] border border-gray-800 rounded-lg overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:border-[#c9a84c] gold-glow-hover cursor-pointer" data-category="brand" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
+                <div class="relative aspect-video overflow-hidden bg-black">
+                    <img src="https://images.unsplash.com/photo-1542282088-fe8426682b8f?q=80&w=1000&auto=format&fit=crop" alt="Luxury Timepiece Ad" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                    <!-- Gold Play Button Overlay -->
+                    <div class="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/20 transition-colors duration-300">
+                        <div class="w-16 h-16 rounded-full bg-[#c9a84c] text-[#0a0a0a] flex items-center justify-center text-2xl shadow-xl transform group-hover:scale-110 transition-transform duration-300">
+                            <i class="fa-solid fa-play ml-1"></i>
+                        </div>
+                    </div>
+                    <!-- Hover Watch Now Overlay -->
+                    <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/80 to-transparent p-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-300 flex justify-between items-end">
+                        <div>
+                            <span class="text-xs uppercase tracking-widest text-[#c9a84c] font-semibold">Brand & Commercial</span>
+                            <h3 class="text-xl font-heading font-bold text-white mt-1">Chronos Luxury Campaign</h3>
+                        </div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-[#c9a84c] flex items-center gap-1 group-hover:underline">
+                            Watch Now <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 4: Short-form -->
+            <div class="portfolio-card group relative bg-[#111111] border border-gray-800 rounded-lg overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:border-[#c9a84c] gold-glow-hover cursor-pointer" data-category="short-form" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
+                <div class="relative aspect-video overflow-hidden bg-black">
+                    <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1000&auto=format&fit=crop" alt="Podcast Micro-Content" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                    <!-- Gold Play Button Overlay -->
+                    <div class="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/20 transition-colors duration-300">
+                        <div class="w-16 h-16 rounded-full bg-[#c9a84c] text-[#0a0a0a] flex items-center justify-center text-2xl shadow-xl transform group-hover:scale-110 transition-transform duration-300">
+                            <i class="fa-solid fa-play ml-1"></i>
+                        </div>
+                    </div>
+                    <!-- Hover Watch Now Overlay -->
+                    <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/80 to-transparent p-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-300 flex justify-between items-end">
+                        <div>
+                            <span class="text-xs uppercase tracking-widest text-[#c9a84c] font-semibold">Short-form Content</span>
+                            <h3 class="text-xl font-heading font-bold text-white mt-1">High-Retention Podcast Clips</h3>
+                        </div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-[#c9a84c] flex items-center gap-1 group-hover:underline">
+                            Watch Now <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 5: Brand/Commercial -->
+            <div class="portfolio-card group relative bg-[#111111] border border-gray-800 rounded-lg overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:border-[#c9a84c] gold-glow-hover cursor-pointer" data-category="brand" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
+                <div class="relative aspect-video overflow-hidden bg-black">
+                    <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?q=80&w=1000&auto=format&fit=crop" alt="Fitness Brand Commercial" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                    <!-- Gold Play Button Overlay -->
+                    <div class="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/20 transition-colors duration-300">
+                        <div class="w-16 h-16 rounded-full bg-[#c9a84c] text-[#0a0a0a] flex items-center justify-center text-2xl shadow-xl transform group-hover:scale-110 transition-transform duration-300">
+                            <i class="fa-solid fa-play ml-1"></i>
+                        </div>
+                    </div>
+                    <!-- Hover Watch Now Overlay -->
+                    <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/80 to-transparent p-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-300 flex justify-between items-end">
+                        <div>
+                            <span class="text-xs uppercase tracking-widest text-[#c9a84c] font-semibold">Brand & Commercial</span>
+                            <h3 class="text-xl font-heading font-bold text-white mt-1">Pulse Fitness Promo</h3>
+                        </div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-[#c9a84c] flex items-center gap-1 group-hover:underline">
+                            Watch Now <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 6: Short-form -->
+            <div class="portfolio-card group relative bg-[#111111] border border-gray-800 rounded-lg overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:border-[#c9a84c] gold-glow-hover cursor-pointer" data-category="short-form" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
+                <div class="relative aspect-video overflow-hidden bg-black">
+                    <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=1000&auto=format&fit=crop" alt="Tech Review TikTok" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                    <!-- Gold Play Button Overlay -->
+                    <div class="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/20 transition-colors duration-300">
+                        <div class="w-16 h-16 rounded-full bg-[#c9a84c] text-[#0a0a0a] flex items-center justify-center text-2xl shadow-xl transform group-hover:scale-110 transition-transform duration-300">
+                            <i class="fa-solid fa-play ml-1"></i>
+                        </div>
+                    </div>
+                    <!-- Hover Watch Now Overlay -->
+                    <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/80 to-transparent p-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-300 flex justify-between items-end">
+                        <div>
+                            <span class="text-xs uppercase tracking-widest text-[#c9a84c] font-semibold">Short-form Content</span>
+                            <h3 class="text-xl font-heading font-bold text-white mt-1">Tech Review Breakdown</h3>
+                        </div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-[#c9a84c] flex items-center gap-1 group-hover:underline">
+                            Watch Now <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- PAGE 3 — ABOUT ME -->
+    <section id="about" class="py-28 bg-[#111111] border-t border-b border-gray-800 reveal">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Left Side Portrait Image -->
+            <div class="lg:col-span-5 relative">
+                <div class="relative mx-auto max-w-sm lg:max-w-none aspect-[4/5] rounded-lg overflow-hidden border-2 border-[#c9a84c] shadow-2xl gold-glow">
+                    <!-- Professional portrait image -->
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1000&auto=format&fit=crop" alt="Daniel Testimony - Professional Video Editor" class="w-full h-full object-cover filter grayscale hover:grayscale-0 transition-all duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-60"></div>
+                    <div class="absolute bottom-6 left-6 right-6 text-center lg:text-left">
+                        <span class="text-xs font-bold uppercase tracking-widest bg-[#c9a84c] text-[#0a0a0a] px-3 py-1 rounded">Daniel Testimony</span>
+                        <p class="text-sm text-gray-300 mt-2 font-heading italic">"Every cut I make is intentional. Every frame tells a story."</p>
+                    </div>
+                </div>
+                <!-- Decorative background elements -->
+                <div class="absolute -top-4 -left-4 w-24 h-24 border-t-2 border-l-2 border-[#c9a84c]/40 z-0 hidden sm:block"></div>
+                <div class="absolute -bottom-4 -right-4 w-24 h-24 border-b-2 border-r-2 border-[#c9a84c]/40 z-0 hidden sm:block"></div>
+            </div>
+
+            <!-- Right Side Text & Skills -->
+            <div class="lg:col-span-7 flex flex-col justify-center">
+                <span class="text-xs uppercase tracking-widest text-[#c9a84c] font-semibold block mb-3">// ABOUT ME</span>
+                <h2 class="text-4xl md:text-5xl font-heading font-bold tracking-tight mb-6">The Editor Behind the Frame</h2>
+                
+                <p class="text-gray-300 text-base md:text-lg leading-relaxed mb-8">
+                    Hi, I'm <span class="text-white font-semibold">Daniel Testimony</span> — a passionate video editor with a sharp eye for storytelling and pacing. I specialize in short-form social content and brand commercials that captivate audiences and drive results. Every cut I make is intentional. Every frame tells a story.
+                </p>
+
+                <!-- Skills Section -->
+                <div class="space-y-6 mb-10" id="skills-container">
+                    <!-- Skill 1 -->
+                    <div>
+                        <div class="flex justify-between text-sm font-semibold mb-2">
+                            <span class="tracking-wider uppercase text-gray-200">Video Editing</span>
+                            <span class="text-[#c9a84c]">95%</span>
+                        </div>
+                        <div class="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
+                            <div class="skill-bar bg-gradient-to-r from-[#c9a84c] to-[#dfbc58] h-full w-0 transition-all duration-1500 ease-out" data-width="95%"></div>
+                        </div>
+                    </div>
+                    <!-- Skill 2 -->
+                    <div>
+                        <div class="flex justify-between text-sm font-semibold mb-2">
+                            <span class="tracking-wider uppercase text-gray-200">Color Grading</span>
+                            <span class="text-[#c9a84c]">90%</span>
+                        </div>
+                        <div class="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
+                            <div class="skill-bar bg-gradient-to-r from-[#c9a84c] to-[#dfbc58] h-full w-0 transition-all duration-1500 ease-out" data-width="90%"></div>
+                        </div>
+                    </div>
+                    <!-- Skill 3 -->
+                    <div>
+                        <div class="flex justify-between text-sm font-semibold mb-2">
+                            <span class="tracking-wider uppercase text-gray-200">Motion Graphics</span>
+                            <span class="text-[#c9a84c]">80%</span>
+                        </div>
+                        <div class="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
+                            <div class="skill-bar bg-gradient-to-r from-[#c9a84c] to-[#dfbc58] h-full w-0 transition-all duration-1500 ease-out" data-width="80%"></div>
+                        </div>
+                    </div>
+                    <!-- Skill 4 -->
+                    <div>
+                        <div class="flex justify-between text-sm font-semibold mb-2">
+                            <span class="tracking-wider uppercase text-gray-200">Sound Design</span>
+                            <span class="text-[#c9a84c]">75%</span>
+                        </div>
+                        <div class="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
+                            <div class="skill-bar bg-gradient-to-r from-[#c9a84c] to-[#dfbc58] h-full w-0 transition-all duration-1500 ease-out" data-width="75%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tools I Use -->
+                <div>
+                    <h3 class="text-xs uppercase tracking-widest text-gray-400 font-semibold mb-4">// TOOLS OF THE TRADE</h3>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="tool-badge flex items-center gap-2 px-4 py-2.5 bg-[#0a0a0a] border border-gray-800 rounded-lg text-sm font-medium">
+                            <i class="fa-solid fa-video text-[#c9a84c]"></i>
+                            <span>Premiere Pro</span>
+                        </div>
+                        <div class="tool-badge flex items-center gap-2 px-4 py-2.5 bg-[#0a0a0a] border border-gray-800 rounded-lg text-sm font-medium">
+                            <i class="fa-solid fa-wand-magic-sparkles text-[#c9a84c]"></i>
+                            <span>After Effects</span>
+                        </div>
+                        <div class="tool-badge flex items-center gap-2 px-4 py-2.5 bg-[#0a0a0a] border border-gray-800 rounded-lg text-sm font-medium">
+                            <i class="fa-solid fa-palette text-[#c9a84c]"></i>
+                            <span>DaVinci Resolve</span>
+                        </div>
+                        <div class="tool-badge flex items-center gap-2 px-4 py-2.5 bg-[#0a0a0a] border border-gray-800 rounded-lg text-sm font-medium">
+                            <i class="fa-solid fa-scissors text-[#c9a84c]"></i>
+                            <span>CapCut</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- PAGE 4 — SERVICES & PRICING -->
+    <section id="services" class="py-28 px-6 md:px-12 max-w-7xl mx-auto reveal">
+        <div class="text-center mb-20">
+            <span class="text-xs uppercase tracking-widest text-[#c9a84c] font-semibold block mb-3">// SERVICES & PRICING</span>
+            <h2 class="text-4xl md:text-6xl font-heading font-bold tracking-tight">What I Offer</h2>
+            <div class="w-20 h-1 bg-[#c9a84c] mx-auto mt-4 mb-8"></div>
+            <p class="text-gray-400 max-w-2xl mx-auto text-base">
+                Transparent, premium video editing packages tailored to scale your brand, maximize viewer retention, and convert audiences.
+            </p>
+        </div>
+
+        <!-- Pricing Cards -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+            
+            <!-- Card 1: Starter -->
+            <div class="bg-[#111111] border border-gray-800 rounded-xl p-8 flex flex-col justify-between transition-all duration-500 hover:-translate-y-2 hover:border-gray-600">
+                <div>
+                    <span class="text-xs uppercase tracking-widest text-gray-400 font-bold block mb-2">Package 01</span>
+                    <h3 class="text-2xl font-heading font-bold text-white mb-4">Starter</h3>
+                    <p class="text-gray-400 text-sm mb-6 min-h-[48px]">
+                        Short-form content editing (Reels, TikToks, Shorts) designed for maximum organic reach.
+                    </p>
+                    <div class="text-2xl font-heading font-bold text-[#c9a84c] mb-8 pb-6 border-b border-gray-800">
+                        Contact for Pricing
+                    </div>
+                    <ul class="space-y-4 text-sm text-gray-300 mb-8">
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check text-[#c9a84c] text-xs"></i>
+                            <span>Up to 3 videos/month</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check text-[#c9a84c] text-xs"></i>
+                            <span>Basic color grading</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check text-[#c9a84c] text-xs"></i>
+                            <span>Engaging dynamic captions</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-600">
+                            <i class="fa-solid fa-xmark text-gray-600 text-xs"></i>
+                            <span class="line-through">Advanced motion graphics</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-600">
+                            <i class="fa-solid fa-xmark text-gray-600 text-xs"></i>
+                            <span class="line-through">Custom sound design</span>
+                        </li>
+                    </ul>
+                </div>
+                <a href="#contact" class="w-full py-4 text-center border border-[#c9a84c] text-[#c9a84c] font-bold text-xs uppercase tracking-widest rounded hover:bg-[#c9a84c] hover:text-[#0a0a0a] transition-all duration-300 block">
+                    Get Started
+                </a>
+            </div>
+
+            <!-- Card 2: Pro (Most Popular) -->
+            <div class="bg-[#111111] border-2 border-[#c9a84c] rounded-xl p-8 flex flex-col justify-between transition-all duration-500 hover:-translate-y-2 relative gold-glow shadow-2xl lg:-translate-y-4">
+                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-[#c9a84c] text-[#0a0a0a] px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest shadow">
+                    Most Popular
+                </div>
+                <div>
+                    <span class="text-xs uppercase tracking-widest text-[#c9a84c] font-bold block mb-2">Package 02</span>
+                    <h3 class="text-3xl font-heading font-bold text-white mb-4">Pro</h3>
+                    <p class="text-gray-300 text-sm mb-6 min-h-[48px]">
+                        Brand & commercial video editing engineered for high conversion and professional impact.
+                    </p>
+                    <div class="text-2xl font-heading font-bold text-[#c9a84c] mb-8 pb-6 border-b border-gray-800">
+                        Contact for Pricing
+                    </div>
+                    <ul class="space-y-4 text-sm text-gray-200 mb-8">
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check text-[#c9a84c] text-xs"></i>
+                            <span>Up to 6 videos/month</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check text-[#c9a84c] text-xs"></i>
+                            <span>Advanced color grading</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check text-[#c9a84c] text-xs"></i>
+                            <span>Custom motion graphics</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check text-[#c9a84c] text-xs"></i>
+                            <span>Professional sound design</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check text-[#c9a84c] text-xs"></i>
+                            <span>Priority email support</span>
+                        </li>
+                    </ul>
+                </div>
+                <a href="#contact" class="w-full py-4 text-center bg-[#c9a84c] text-[#0a0a0a] font-bold text-xs uppercase tracking-widest rounded hover:bg-[#dfbc58] transition-all duration-300 block shadow-lg shadow-[#c9a84c]/20">
+                    Get Started
+                </a>
+            </div>
+
+            <!-- Card 3: Premium -->
+            <div class="bg-[#111111] border border-gray-800 rounded-xl p-8 flex flex-col justify-between transition-all duration-500 hover:-translate-y-2 hover:border-gray-600">
+                <div>
+                    <span class="text-xs uppercase tracking-widest text-gray-400 font-bold block mb-2">Package 03</span>
+                    <h3 class="text-2xl font-heading font-bold text-white mb-4">Premium</h3>
+                    <p class="text-gray-400 text-sm mb-6 min-h-[48px]">
+                        Full video production package for top-tier creators and established businesses.
+                    </p>
+                    <div class="text-2xl font-heading font-bold text-[#c9a84c] mb-8 pb-6 border-b border-gray-800">
+                        Contact for Pricing
+                    </div>
+                    <ul class="space-y-4 text-sm text-gray-300 mb-8">
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check text-[#c9a84c] text-xs"></i>
+                            <span>Full video production package</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check text-[#c9a84c] text-xs"></i>
+                            <span>Unlimited revisions</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check text-[#c9a84c] text-xs"></i>
+                            <span>Dedicated fast turnaround</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check text-[#c9a84c] text-xs"></i>
+                            <span>Advanced VFX & Color Grading</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check text-[#c9a84c] text-xs"></i>
+                            <span>24/7 Priority support & strategy</span>
+                        </li>
+                    </ul>
+                </div>
+                <a href="#contact" class="w-full py-4 text-center border border-[#c9a84c] text-[#c9a84c] font-bold text-xs uppercase tracking-widest rounded hover:bg-[#c9a84c] hover:text-[#0a0a0a] transition-all duration-300 block">
+                    Get Started
+                </a>
+            </div>
+
+        </div>
+
+        <!-- Below Cards Link -->
+        <div class="text-center mt-16">
+            <p class="text-gray-400 text-base">
+                Not sure which plan? 
+                <a href="#contact" class="text-[#c9a84c] font-semibold hover:underline transition-all">Let's talk.</a>
+            </p>
+        </div>
+    </section>
+
+
+    <!-- PAGE 5 — TESTIMONIALS -->
+    <section id="testimonials" class="py-28 bg-[#111111] border-t border-b border-gray-800 reveal overflow-hidden">
+        <div class="max-w-6xl mx-auto px-6 md:px-12">
+            <div class="text-center mb-16">
+                <span class="text-xs uppercase tracking-widest text-[#c9a84c] font-semibold block mb-3">// TESTIMONIALS</span>
+                <h2 class="text-4xl md:text-6xl font-heading font-bold tracking-tight">What Clients Say</h2>
+                <div class="w-20 h-1 bg-[#c9a84c] mx-auto mt-4 mb-8"></div>
+            </div>
+
+            <!-- Carousel Wrapper -->
+            <div class="relative max-w-4xl mx-auto">
+                
+                <div id="testimonial-slider" class="relative overflow-hidden min-h-[280px] md:min-h-[240px]">
+                    <!-- Testimonial 1 -->
+                    <div class="testimonial-slide absolute inset-0 transition-all duration-700 ease-in-out opacity-100 transform translate-x-0 flex flex-col justify-center items-center text-center px-4" data-slide="0">
+                        <i class="fa-solid fa-quote-left text-4xl md:text-5xl text-[#c9a84c] mb-6 opacity-40"></i>
+                        <p class="text-xl md:text-2xl font-heading italic text-gray-200 mb-6 leading-relaxed max-w-3xl">
+                            "Daniel transformed our brand content completely. The edits were sharp, cinematic, and exactly what we needed."
+                        </p>
+                        <div class="flex gap-1 text-[#c9a84c] text-sm mb-4">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <h4 class="font-bold text-white tracking-wider uppercase text-sm">Sarah K.</h4>
+                        <span class="text-xs text-[#c9a84c] tracking-widest uppercase mt-1">Brand Manager</span>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div class="testimonial-slide absolute inset-0 transition-all duration-700 ease-in-out opacity-0 transform translate-x-full flex flex-col justify-center items-center text-center px-4 pointer-events-none" data-slide="1">
+                        <i class="fa-solid fa-quote-left text-4xl md:text-5xl text-[#c9a84c] mb-6 opacity-40"></i>
+                        <p class="text-xl md:text-2xl font-heading italic text-gray-200 mb-6 leading-relaxed max-w-3xl">
+                            "Fastest turnaround I've ever seen, and the quality was outstanding. Highly recommend!"
+                        </p>
+                        <div class="flex gap-1 text-[#c9a84c] text-sm mb-4">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <h4 class="font-bold text-white tracking-wider uppercase text-sm">James O.</h4>
+                        <span class="text-xs text-[#c9a84c] tracking-widest uppercase mt-1">YouTuber</span>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="testimonial-slide absolute inset-0 transition-all duration-700 ease-in-out opacity-0 transform translate-x-full flex flex-col justify-center items-center text-center px-4 pointer-events-none" data-slide="2">
+                        <i class="fa-solid fa-quote-left text-4xl md:text-5xl text-[#c9a84c] mb-6 opacity-40"></i>
+                        <p class="text-xl md:text-2xl font-heading italic text-gray-200 mb-6 leading-relaxed max-w-3xl">
+                            "Our Instagram Reels blew up after Daniel edited them. Real results, real talent."
+                        </p>
+                        <div class="flex gap-1 text-[#c9a84c] text-sm mb-4">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <h4 class="font-bold text-white tracking-wider uppercase text-sm">Amaka T.</h4>
+                        <span class="text-xs text-[#c9a84c] tracking-widest uppercase mt-1">Entrepreneur</span>
+                    </div>
+
+                    <!-- Testimonial 4 -->
+                    <div class="testimonial-slide absolute inset-0 transition-all duration-700 ease-in-out opacity-0 transform translate-x-full flex flex-col justify-center items-center text-center px-4 pointer-events-none" data-slide="3">
+                        <i class="fa-solid fa-quote-left text-4xl md:text-5xl text-[#c9a84c] mb-6 opacity-40"></i>
+                        <p class="text-xl md:text-2xl font-heading italic text-gray-200 mb-6 leading-relaxed max-w-3xl">
+                            "Professional, creative, and always delivers beyond expectations. Daniel is the real deal."
+                        </p>
+                        <div class="flex gap-1 text-[#c9a84c] text-sm mb-4">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <h4 class="font-bold text-white tracking-wider uppercase text-sm">Michael A.</h4>
+                        <span class="text-xs text-[#c9a84c] tracking-widest uppercase mt-1">Creative Director</span>
+                    </div>
+                </div>
+
+                <!-- Manual Dot Navigation Below -->
+                <div class="flex justify-center items-center gap-3 mt-8" id="carousel-dots">
+                    <button class="carousel-dot w-3 h-3 rounded-full bg-[#c9a84c] transition-all duration-300" data-dot="0" aria-label="Slide 1"></button>
+                    <button class="carousel-dot w-3 h-3 rounded-full bg-gray-700 hover:bg-[#c9a84c]/50 transition-all duration-300" data-dot="1" aria-label="Slide 2"></button>
+                    <button class="carousel-dot w-3 h-3 rounded-full bg-gray-700 hover:bg-[#c9a84c]/50 transition-all duration-300" data-dot="2" aria-label="Slide 3"></button>
+                    <button class="carousel-dot w-3 h-3 rounded-full bg-gray-700 hover:bg-[#c9a84c]/50 transition-all duration-300" data-dot="3" aria-label="Slide 4"></button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- PAGE 6 — CONTACT -->
+    <section id="contact" class="py-28 px-6 md:px-12 max-w-7xl mx-auto reveal">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+            
+            <!-- Left Info Column -->
+            <div class="lg:col-span-5">
+                <span class="text-xs uppercase tracking-widest text-[#c9a84c] font-semibold block mb-3">// CONTACT</span>
+                <h2 class="text-4xl md:text-6xl font-heading font-bold tracking-tight mb-6">Let's Work Together</h2>
+                <p class="text-gray-400 text-base md:text-lg leading-relaxed mb-10">
+                    Have a project in mind? Reach out and let's create something great. Fill out the form or email me directly to discuss your vision, timeline, and goals.
+                </p>
+
+                <!-- Contact Info -->
+                <div class="space-y-6 mb-12">
+                    <div class="flex items-center gap-4 group">
+                        <div class="w-12 h-12 rounded-lg bg-[#111111] border border-gray-800 flex items-center justify-center text-[#c9a84c] text-xl group-hover:border-[#c9a84c] transition-colors duration-300">
+                            <i class="fa-regular fa-envelope"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs uppercase tracking-widest text-gray-500 font-medium block">Email Me</span>
+                            <a href="mailto:coriftech@gmail.com" class="text-lg font-heading font-semibold text-gray-200 hover:text-[#c9a84c] transition-colors">coriftech@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social Icons -->
+                <div>
+                    <h3 class="text-xs uppercase tracking-widest text-gray-500 font-semibold mb-4">Follow My Work</h3>
+                    <div class="flex gap-4">
+                        <a href="https://youtube.com" target="_blank" class="w-11 h-11 rounded-lg bg-[#111111] border border-gray-800 flex items-center justify-center text-gray-300 hover:text-[#0a0a0a] hover:bg-[#c9a84c] hover:border-[#c9a84c] transition-all duration-300 gold-glow-hover">
+                            <i class="fa-brands fa-youtube text-lg"></i>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" class="w-11 h-11 rounded-lg bg-[#111111] border border-gray-800 flex items-center justify-center text-gray-300 hover:text-[#0a0a0a] hover:bg-[#c9a84c] hover:border-[#c9a84c] transition-all duration-300 gold-glow-hover">
+                            <i class="fa-brands fa-instagram text-lg"></i>
+                        </a>
+                        <a href="https://tiktok.com" target="_blank" class="w-11 h-11 rounded-lg bg-[#111111] border border-gray-800 flex items-center justify-center text-gray-300 hover:text-[#0a0a0a] hover:bg-[#c9a84c] hover:border-[#c9a84c] transition-all duration-300 gold-glow-hover">
+                            <i class="fa-brands fa-tiktok text-lg"></i>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" class="w-11 h-11 rounded-lg bg-[#111111] border border-gray-800 flex items-center justify-center text-gray-300 hover:text-[#0a0a0a] hover:bg-[#c9a84c] hover:border-[#c9a84c] transition-all duration-300 gold-glow-hover">
+                            <i class="fa-brands fa-linkedin-in text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Form Column -->
+            <div class="lg:col-span-7 bg-[#111111] border border-gray-800 rounded-xl p-8 md:p-12 relative shadow-2xl">
+                <!-- Success Message Overlay -->
+                <div id="form-success" class="absolute inset-0 bg-[#111111] rounded-xl flex flex-col items-center justify-center text-center p-8 z-20 opacity-0 pointer-events-none transition-all duration-500">
+                    <div class="w-16 h-16 rounded-full bg-[#c9a84c]/20 border-2 border-[#c9a84c] flex items-center justify-center text-[#c9a84c] text-3xl mb-6 animate-bounce">
+                        <i class="fa-solid fa-check"></i>
+                    </div>
+                    <h3 id="success-title" class="text-3xl font-heading font-bold text-white mb-3">Thanks!</h3>
+                    <p id="success-text" class="text-gray-300 text-base max-w-md mx-auto mb-8">I'll get back to you shortly.</p>
+                    <button onclick="resetContactForm()" class="px-8 py-3 bg-[#c9a84c] text-[#0a0a0a] font-bold text-xs uppercase tracking-widest rounded shadow hover:bg-[#dfbc58] transition-all">
+                        Send Another Message
+                    </button>
+                </div>
+
+                <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-xs uppercase tracking-widest text-gray-400 font-semibold mb-2">Your Name *</label>
+                        <input type="text" id="name" name="name" required placeholder="John Doe" class="w-full bg-[#0a0a0a] border border-gray-800 rounded px-4 py-3.5 text-white placeholder-gray-600 focus:outline-none focus:border-[#c9a84c] transition-colors text-sm">
+                    </div>
+
+                    <div>
+                        <label for="email" class="block text-xs uppercase tracking-widest text-gray-400 font-semibold mb-2">Your Email *</label>
+                        <input type="email" id="email" name="email" required placeholder="john@example.com" class="w-full bg-[#0a0a0a] border border-gray-800 rounded px-4 py-3.5 text-white placeholder-gray-600 focus:outline-none focus:border-[#c9a84c] transition-colors text-sm">
+                    </div>
+
+                    <div>
+                        <label for="project-type" class="block text-xs uppercase tracking-widest text-gray-400 font-semibold mb-2">Project Type *</label>
+                        <select id="project-type" name="project-type" required class="w-full bg-[#0a0a0a] border border-gray-800 rounded px-4 py-3.5 text-white focus:outline-none focus:border-[#c9a84c] transition-colors text-sm appearance-none cursor-pointer">
+                            <option value="" disabled selected>Select a project type</option>
+                            <option value="Short-form">Short-form Content (Reels/TikTok/Shorts)</option>
+                            <option value="Brand/Commercial">Brand / Commercial Video</option>
+                            <option value="Other">Other / Full Production</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="message" class="block text-xs uppercase tracking-widest text-gray-400 font-semibold mb-2">Your Message *</label>
+                        <textarea id="message" name="message" rows="5" required placeholder="Tell me about your project, vision, and timeline..." class="w-full bg-[#0a0a0a] border border-gray-800 rounded px-4 py-3.5 text-white placeholder-gray-600 focus:outline-none focus:border-[#c9a84c] transition-colors text-sm resize-none"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full py-4 bg-[#c9a84c] text-[#0a0a0a] font-bold text-xs uppercase tracking-widest rounded shadow-xl hover:bg-[#dfbc58] transition-all duration-300 gold-glow transform hover:-translate-y-0.5">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="bg-[#0a0a0a] border-t border-gray-900 py-16 px-6 md:px-12 text-center reveal">
+        <div class="max-w-7xl mx-auto flex flex-col items-center gap-8">
+            <a href="#home" class="text-3xl font-heading font-bold text-[#c9a84c] tracking-wider cursor-pointer hover:text-white transition-colors duration-300">
+                DANIEL TESTIMONY
+            </a>
+
+            <!-- Nav Links Repeated -->
+            <nav class="flex flex-wrap justify-center items-center gap-6 md:gap-10 text-xs uppercase tracking-widest font-medium text-gray-400">
+                <a href="#home" class="hover:text-[#c9a84c] transition-colors">Home</a>
+                <a href="#portfolio" class="hover:text-[#c9a84c] transition-colors">Portfolio</a>
+                <a href="#about" class="hover:text-[#c9a84c] transition-colors">About</a>
+                <a href="#services" class="hover:text-[#c9a84c] transition-colors">Services</a>
+                <a href="#testimonials" class="hover:text-[#c9a84c] transition-colors">Testimonials</a>
+                <a href="#contact" class="hover:text-[#c9a84c] transition-colors">Contact</a>
+            </nav>
+
+            <div class="w-24 h-px bg-gray-800 my-2"></div>
+
+            <p class="text-sm font-heading italic text-gray-400">
+                "Every frame tells a story."
+            </p>
+
+            <p class="text-xs tracking-widest uppercase text-gray-600">
+                © 2026 Daniel Testimony. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+
+    <!-- LIGHTBOX / MODAL -->
+    <div id="lightbox" class="fixed inset-0 bg-black/95 backdrop-blur-xl z-50 flex items-center justify-center p-4 md:p-12 opacity-0 pointer-events-none transition-all duration-500">
+        <button onclick="closeLightbox()" class="absolute top-6 right-6 md:top-10 md:right-10 w-12 h-12 rounded-full bg-[#111111] border border-gray-800 text-white hover:text-[#c9a84c] hover:border-[#c9a84c] flex items-center justify-center text-xl transition-all z-10" aria-label="Close Modal">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="w-full max-w-5xl aspect-video bg-black rounded-xl overflow-hidden shadow-2xl border border-gray-800 relative">
+            <iframe id="lightbox-iframe" class="w-full h-full absolute inset-0" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+    </div>
+
+
+    <!-- JAVASCRIPT FUNCTIONALITY -->
+    <script>
+        /* 1. CUSTOM CURSOR */
+        const cursorDot = document.getElementById('cursor-dot');
+        const cursorOutline = document.getElementById('cursor-outline');
+
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+
+            // Slightly trailing outline
+            cursorOutline.style.left = `${posX}px`;
+            cursorOutline.style.top = `${posY}px`;
+        });
+
+        // Hover effect on clickable items
+        const clickables = document.querySelectorAll('a, button, input, select, textarea, .portfolio-card');
+        clickables.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                cursorOutline.style.width = '54px';
+                cursorOutline.style.height = '54px';
+                cursorOutline.style.borderColor = '#c9a84c';
+                cursorOutline.style.backgroundColor = 'rgba(201, 168, 76, 0.1)';
+                cursorDot.style.transform = 'translate(-50%, -50%) scale(1.5)';
+            });
+            item.addEventListener('mouseleave', () => {
+                cursorOutline.style.width = '36px';
+                cursorOutline.style.height = '36px';
+                cursorOutline.style.borderColor = 'rgba(201, 168, 76, 0.5)';
+                cursorOutline.style.backgroundColor = 'transparent';
+                cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
+            });
+        });
+
+
+        /* 2. NAVBAR SCROLL & ACTIVE LINK SPY */
+        const navbar = document.getElementById('navbar');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section');
+
+        window.addEventListener('scroll', () => {
+            // Glassmorphism effect adjustment on scroll
+            if (window.scrollY > 50) {
+                navbar.classList.add('py-4');
+                navbar.classList.remove('py-5');
+                navbar.style.background = 'rgba(10, 10, 10, 0.85)';
+            } else {
+                navbar.classList.add('py-5');
+                navbar.classList.remove('py-4');
+                navbar.style.background = 'rgba(10, 10, 10, 0.75)';
+            }
+
+            // Scroll Spy for Nav Links
+            let currentSection = 'home';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                if (window.scrollY >= sectionTop) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('text-[#c9a84c]');
+                link.classList.add('text-gray-300');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.remove('text-gray-300');
+                    link.classList.add('text-[#c9a84c]');
+                }
+            });
+        });
+
+
+        /* 3. MOBILE MENU TOGGLE */
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link, #mobile-menu a');
+        let isMenuOpen = false;
+
+        mobileMenuBtn.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+                mobileMenu.classList.add('opacity-100');
+                mobileMenuBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+            } else {
+                mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+                mobileMenu.classList.remove('opacity-100');
+                mobileMenuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+            }
+        });
+
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                isMenuOpen = false;
+                mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+                mobileMenu.classList.remove('opacity-100');
+                mobileMenuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+            });
+        });
+
+
+        /* 4. SCROLL REVEAL & SKILL BAR ANIMATION */
+        const revealElements = document.querySelectorAll('.reveal');
+        const skillBars = document.querySelectorAll('.skill-bar');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    
+                    // Check if about section to trigger skill bars
+                    if (entry.target.getAttribute('id') === 'about') {
+                        skillBars.forEach(bar => {
+                            bar.style.width = bar.getAttribute('data-width');
+                        });
+                    }
+                }
+            });
+        }, { threshold: 0.15 });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+
+        /* 5. PORTFOLIO FILTERING */
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const portfolioCards = document.querySelectorAll('.portfolio-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Active button styling
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-[#c9a84c]', 'text-[#0a0a0a]', 'shadow-lg');
+                    b.classList.add('bg-[#111111]', 'text-gray-300');
+                });
+                btn.classList.add('bg-[#c9a84c]', 'text-[#0a0a0a]', 'shadow-lg');
+                btn.classList.remove('bg-[#111111]', 'text-gray-300');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                portfolioCards.forEach(card => {
+                    card.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
+                    if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'scale(1)';
+                        }, 50);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'scale(0.9)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 400);
+                    }
+                });
+            });
+        });
+
+
+        /* 6. LIGHTBOX MODAL */
+        const lightbox = document.getElementById('lightbox');
+        const lightboxIframe = document.getElementById('lightbox-iframe');
+
+        portfolioCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const videoUrl = card.getAttribute('data-video');
+                lightboxIframe.src = videoUrl;
+                lightbox.classList.remove('opacity-0', 'pointer-events-none');
+                lightbox.classList.add('opacity-100');
+            });
+        });
+
+        function closeLightbox() {
+            lightbox.classList.add('opacity-0', 'pointer-events-none');
+            lightbox.classList.remove('opacity-100');
+            setTimeout(() => {
+                lightboxIframe.src = '';
+            }, 500);
+        }
+
+        // Close lightbox on outside click or escape key
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+
+        /* 7. TESTIMONIAL CAROUSEL */
+        const slides = document.querySelectorAll('.testimonial-slide');
+        const dots = document.querySelectorAll('.carousel-dot');
+        let currentSlide = 0;
+        let slideInterval;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                if (i === index) {
+                    slide.classList.remove('opacity-0', 'translate-x-full', 'pointer-events-none');
+                    slide.classList.add('opacity-100', 'translate-x-0');
+                } else {
+                    slide.classList.remove('opacity-100', 'translate-x-0');
+                    slide.classList.add('opacity-0', 'translate-x-full', 'pointer-events-none');
+                }
+            });
+
+            dots.forEach((dot, i) => {
+                if (i === index) {
+                    dot.classList.remove('bg-gray-700');
+                    dot.classList.add('bg-[#c9a84c]');
+                } else {
+                    dot.classList.remove('bg-[#c9a84c]');
+                    dot.classList.add('bg-gray-700');
+                }
+            });
+            currentSlide = index;
+        }
+
+        function nextSlide() {
+            let next = (currentSlide + 1) % slides.length;
+            showSlide(next);
+        }
+
+        function startCarousel() {
+            slideInterval = setInterval(nextSlide, 4000);
+        }
+
+        function resetCarouselInterval() {
+            clearInterval(slideInterval);
+            startCarousel();
+        }
+
+        dots.forEach((dot, i) => {
+            dot.addEventListener('click', () => {
+                showSlide(i);
+                resetCarouselInterval();
+            });
+        });
+
+        startCarousel();
+
+
+        /* 8. CONTACT FORM VALIDATION & SUBMISSION */
+        function handleFormSubmit(event) {
+            event.preventDefault();
+
+            const form = document.getElementById('contact-form');
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+            const projectTypeInput = document.getElementById('project-type');
+            const messageInput = document.getElementById('message');
+
+            const name = nameInput.value.trim();
+            const email = emailInput.value.trim();
+            const projectType = projectTypeInput.value;
+            const message = messageInput.value.trim();
+
+            if (!name || !email || !projectType || !message) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            // Display success message
+            const formSuccess = document.getElementById('form-success');
+            const successTitle = document.getElementById('success-title');
+            const successText = document.getElementById('success-text');
+
+            successTitle.innerText = `Thanks ${name}!`;
+            successText.innerText = "I'll get back to you shortly.";
+
+            formSuccess.classList.remove('opacity-0', 'pointer-events-none');
+            formSuccess.classList.add('opacity-100');
+
+            // Trigger mailto fallback/action in background
+            const mailtoUrl = `mailto:coriftech@gmail.com?subject=New Project Inquiry: ${encodeURIComponent(projectType)}&body=${encodeURIComponent("Name: " + name + "\nEmail: " + email + "\nProject Type: " + projectType + "\n\nMessage:\n" + message)}`;
+            
+            setTimeout(() => {
+                window.location.href = mailtoUrl;
+            }, 1500);
+        }
+
+        function resetContactForm() {
+            const form = document.getElementById('contact-form');
+            const formSuccess = document.getElementById('form-success');
+
+            form.reset();
+            formSuccess.classList.add('opacity-0', 'pointer-events-none');
+            formSuccess.classList.remove('opacity-100');
+        }
+    </script>
+</body>
+</html>
